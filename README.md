@@ -7,7 +7,7 @@ Each assignment is a folder with Python code and a writeup. Writeups are Markdow
 ## Assignments
 
 <!-- assignments:start -->
-No assignments yet.
+- [a1-ml-foundations](assignments/a1-ml-foundations)
 <!-- assignments:end -->
 
 ## Layout
