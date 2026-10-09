@@ -1,0 +1,62 @@
+{
+  "name": "CSS-581 Machine Learning Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": [
+    "--userns=keep-id",
+    "--security-opt",
+    "label=disable",
+    "--device",
+    "nvidia.com/gpu=all",
+    "--env-file=${localWorkspaceFolder}/.local/.env"
+  ],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "updateRemoteUserUID": true,
+  "mounts": [
+    "source=${localEnv:XDG_RUNTIME_DIR}/podman/podman.sock,target=/run/podman/podman.sock,type=bind",
+    "source=${localEnv:SSH_AUTH_SOCK},target=/run/ssh-agent.sock,type=bind,Z",
+    "source=${localEnv:HOME}/.zshrc,target=/home/vscode/.zshrc,type=bind,readonly,z",
+    "source=${localEnv:HOME}/.p10k.zsh,target=/home/vscode/.p10k.zsh,type=bind,readonly,z",
+    "source=${localWorkspaceFolder}/.local/home/.config,target=/home/vscode/.config,type=bind,z"
+  ],
+  "initializeCommand": "mkdir -p -m 700 .local/home && cd .local/home && mkdir -p .config && cd .. && touch .env && chmod 600 .env",
+  "remoteEnv": {
+    "CONTAINER_HOST": "unix:///run/podman/podman.sock",
+    "SSH_AUTH_SOCK": "/run/ssh-agent.sock"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "DavidAnson.vscode-markdownlint",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "GitHub.remotehub",
+        "github.vscode-github-actions",
+        "GitHub.vscode-pull-request-github",
+        "hediet.vscode-drawio",
+        "ms-azuretools.vscode-containers",
+        "ms-azuretools.vscode-docker",
+        "ms-dotnettools.csdevkit",
+        "ms-dotnettools.csharp",
+        "ms-dotnettools.vscode-dotnet-pack",
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "ms-python.python",
+        "ms-vscode-remote.remote-containers",
+        "oxc.oxc-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "vitest.explorer",
+        "Vue.volar",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh"
+      }
+    }
+  }
+}
