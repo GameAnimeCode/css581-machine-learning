@@ -31,3 +31,15 @@
   \lfoot{\footnotesize Code Repository: \codeRepo}%
   \rfoot{\footnotesize Page \thepage{} of \pageref*{LastPage}}%
 }
+
+% Inside an answer blockquote, set figures in place at the quote's width so the
+% image and caption keep the quote indent. A regular float would span the full
+% text width.
+\usepackage{etoolbox}
+\makeatletter
+\AtBeginEnvironment{quote}{%
+  \renewenvironment{figure}[1][]%
+    {\par\medskip\noindent\minipage{\linewidth}\def\@captype{figure}}%
+    {\endminipage\par\medskip}%
+}
+\makeatother
