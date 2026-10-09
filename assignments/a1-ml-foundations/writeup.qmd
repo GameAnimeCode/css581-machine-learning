@@ -47,13 +47,13 @@ a. You have developed an algorithm to automatically and efficiently retrieve add
 
 **Answer:**
 
-> answer
+> No, this is not machine learning. The algorithm is performing a search and retrieval operation based on a key (the person's name) without learning from data or improving its performance.
 
 b. You have developed an algorithm to automatically and efficiently retrieve all images similar to a query image from a very large image database. The results could be ranked by similarity scores or probabilities. Is this machine learning? Why or why not?
 
 **Answer:**
 
-> answer
+> Yes, this is machine learning. The algorithm is learning to identify and rank similar images based on their visual features, which involves training a model to recognize patterns in the data.
 
 ## Problem 3: Selecting an Appropriate Learning Task (10 points)
 
