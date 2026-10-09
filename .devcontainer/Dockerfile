@@ -29,9 +29,11 @@ ENV PATH="/home/vscode/.npm-global/bin:${PATH}"
 RUN mkdir -p "${NPM_CONFIG_PREFIX}"
 
 # Install Quarto and TinyTeX to render the markdown writeups to PDF.
+# librsvg2-tools provides rsvg-convert, which Quarto needs to embed SVG figures in PDF output.
 ARG QUARTO_VERSION=1.10.19
 USER root
-RUN curl -fsSL -o /tmp/quarto.rpm \
+RUN dnf install -y librsvg2-tools && \
+  curl -fsSL -o /tmp/quarto.rpm \
   "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-$(uname -m).rpm" && \
   dnf install -y /tmp/quarto.rpm && \
   rm /tmp/quarto.rpm && \
