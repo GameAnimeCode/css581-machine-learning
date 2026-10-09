@@ -24,6 +24,9 @@ format:
 \stuId{} | \stuEmail \hfill \dueDate
 
 \bigskip
+\begin{center}
+{\Large\bfseries \asgTitle}
+\end{center}
 ```
 
 Start your introduction or response here.
