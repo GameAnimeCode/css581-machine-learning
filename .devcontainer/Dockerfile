@@ -28,6 +28,17 @@ ENV NPM_CONFIG_PREFIX=/home/vscode/.npm-global
 ENV PATH="/home/vscode/.npm-global/bin:${PATH}"
 RUN mkdir -p "${NPM_CONFIG_PREFIX}"
 
+# Install Quarto and TinyTeX to render the markdown writeups to PDF.
+ARG QUARTO_VERSION=1.10.19
+USER root
+RUN curl -fsSL -o /tmp/quarto.rpm \
+  "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-$(uname -m).rpm" && \
+  dnf install -y /tmp/quarto.rpm && \
+  rm /tmp/quarto.rpm && \
+  dnf clean all
+USER vscode
+RUN quarto install tinytex --no-prompt
+
 # Install Oh My Zsh, Powerlevel10k, and ZSH plugins manually
 RUN git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git /home/vscode/.oh-my-zsh && \
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/vscode/.oh-my-zsh/custom/themes/powerlevel10k && \
