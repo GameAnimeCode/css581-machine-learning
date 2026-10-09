@@ -1,0 +1,37 @@
+---
+format:
+  pdf:
+    documentclass: article
+    papersize: letter
+    fontsize: 12pt
+    geometry:
+      - margin=1in
+    include-in-header: preamble.tex
+---
+
+```{=latex}
+% Fill these in once per assignment. They feed the first-page block,
+% the running header (page 2 onward), and the footer.
+% Name, last name, ID, and email are NOT set here. scripts/build-writeup.sh
+% injects them at build time from .local/student.env, so they stay out of git.
+\newcommand{\courseName}{CSS 581: Machine Learning}
+\newcommand{\dueDate}{Month DD, YYYY}
+\newcommand{\asgTitle}{Assignment X: Short Title}
+\newcommand{\codeRepo}{\url{https://github.com/GameAnimeCode/css581-machine-learning}}
+
+\thispagestyle{firstpage}
+\noindent \stuName \hfill \courseName \\
+\stuId{} | \stuEmail \hfill \dueDate
+
+\bigskip
+```
+
+Start your introduction or response here.
+
+## Section heading
+
+Body text. Code and results go here, for example:
+
+```python
+print("hello")
+```

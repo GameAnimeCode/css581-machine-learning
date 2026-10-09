@@ -10,3 +10,10 @@
 .venv/
 __pycache__/
 *.py[cod]
+
+# Quarto build output
+.quarto/
+assignments/**/*.pdf
+assignments/**/writeup.tex
+assignments/**/personal.tex
+assignments/**/*_files/
