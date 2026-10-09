@@ -1,0 +1,7 @@
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Persisted container home state, bind-mounted by the devcontainer
+.local/
