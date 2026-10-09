@@ -63,25 +63,25 @@ a. You are the manager of a local Safeway store. Sales data indicate that custom
 
 **Answer:**
 
-> answer
+> Association rule analysis is most appropriate. The goal is to discover relationships between items in transaction data.
 
 b. A dietician is trying to understand how people's dietary choices affect the amount of weight they gain or lose, but no obvious patterns are apparent. For a recent six-month period, the dietician has records for 150 clients describing their consumption of 12 different foods and the change in their weight over that period.
 
 **Answer:**
 
-> answer
+> Regression is most appropriate. The dietician wants to predict a continuous numeric outcome based on food consumption patterns.
 
 c. You and a friend disagree about how many social groups exist at your school. You believe there are approximately half a dozen natural groups based on preferences for music, clothing, athletics, and politics, while your friend believes everyone's preferences are random. You can access publicly available records from a poll in which 1,000 students scored their preferences for 20 forms of art and entertainment.
 
 **Answer:**
 
-> answer
+> Clustering is most appropriate. The goal is to identify natural groupings of individuals based on their preferences.
 
 d. You work at an oil company that wants to predict whether wells drilled in several new formations will produce oil. You are given a large collection of data from past drilling efforts, including geographic location, well depth, rock type, formation age, and the success or failure of each drilled well.
 
 **Answer:**
 
-> answer
+> Classification is most appropriate. The goal is to predict a categorical outcome based on various features of the wells.
 
 ## Problem 4: A Machine Learning Opportunity (4 points)
 
