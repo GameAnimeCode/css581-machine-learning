@@ -35,7 +35,9 @@ Give a concrete example of a data object in the real world. Think about its attr
 
 **Answer:**
 
-> answer
+> A car is a data object. Each individual car is one record (row) in a data set, and its attributes are the columns that describe it. The attributes I identified are weight, seating capacity, dimensions (length, width, and height), number of doors, powertrain (internal combustion or electric), range, horsepower, tank or battery capacity, number of tires, number of axles, safety features, paint color, interior color, and interior material. The figure below lists each attribute with its type and an example value for one car.
+
+![*A car as a data object, with its attributes, their types, and example values for one car.*](figures/car.drawio.svg){width=100% fig-pos="H"}
 
 ## Problem 2: Recognizing Machine Learning Problems (5 points)
 
