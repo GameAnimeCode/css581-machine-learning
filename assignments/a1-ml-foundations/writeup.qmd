@@ -89,7 +89,13 @@ Describe a situation in your life where machine learning might be beneficial. Fo
 
 **Answer:**
 
-> answer
+> **Situation:** personal finance management, which could help users make informed financial decisions and manage their budgets more effectively.
+> 
+> **Problem:** helping individuals track their spending habits and predict future expenses based on past behavior.
+> 
+> **Data:** transaction history, income, spending categories, and time of transactions.
+> 
+> **Approach:** *regression* for predicting future expenses, *clustering* for identifying spending patterns, and *categorizing* transactions into different groups.
 
 ## Problem 5: Term Project Proposal (6 points)
 
