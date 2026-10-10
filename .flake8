@@ -1,0 +1,7 @@
+[flake8]
+# Normalized on Black: these settings keep flake8 from conflicting with it.
+# Black wraps at 88 characters (flake8 defaults to 79).
+max-line-length = 88
+# E203: Black puts spaces around slice colons, e.g. x[a : b].
+extend-ignore = E203
+exclude = .venv,.git
