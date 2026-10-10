@@ -43,3 +43,8 @@
     {\endminipage\par\medskip}%
 }
 \makeatother
+
+% Code blocks: fall back to the math font for symbols the monospace font
+% lacks (Greek letters, arrows), so they are not dropped from source listings.
+\directlua{luaotfload.add_fallback("monofallback", {"latinmodern-math.otf:mode=node;"})}
+\setmonofont{Latin Modern Mono}[BoldFont={lmmonolt10-bold.otf}, RawFeature={fallback=monofallback}]
