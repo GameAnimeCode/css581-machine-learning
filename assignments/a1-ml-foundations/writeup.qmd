@@ -155,4 +155,19 @@ $$\mathrm{cov} = \begin{bmatrix} 0.61655556 & 0.61544444 \\ 0.61544444 & 0.71655
 
 **Answer:**
 
-> answer
+> The source code is in `src/main.py`:
+
+```{=latex}
+% 9pt fits an 88-character line (the Black limit) inside the quote indent.
+\begin{quote}\fontsize{9}{11}\selectfont
+```
+
+```python
+{{< include src/main.py >}}
+```
+
+```{=latex}
+\end{quote}
+```
+
+> ![*Problem 7 program output.*](figures/problem-7-output.png){width=70%}
