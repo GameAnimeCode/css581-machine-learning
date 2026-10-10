@@ -5,7 +5,7 @@ FROM registry.fedoraproject.org/fedora:44
 RUN groupadd --gid 1000 vscode && \
   useradd --uid 1000 --gid 1000 -m -s /bin/bash vscode
 
-# Install Dev Tools, Container CLI clients, and Browser dependencies
+# Install Dev Tools and Container CLI clients
 RUN dnf config-manager addrepo --from-repofile https://cli.github.com/packages/rpm/gh-cli.repo && \
   dnf update -y && \
   dnf install -y \
@@ -14,11 +14,7 @@ RUN dnf config-manager addrepo --from-repofile https://cli.github.com/packages/r
   nodejs24 npm \
   docker podman podman-compose \
   wget gnupg curl git \
-  zsh tmux vim powerline powerline-fonts tmux-powerline vim-powerline \
-  xorg-x11-server-Xvfb \
-  fedora-workstation-repositories && \
-  dnf config-manager setopt google-chrome.enabled=1 && \
-  dnf install -y google-chrome-stable && \
+  zsh tmux vim powerline powerline-fonts tmux-powerline vim-powerline && \
   dnf clean all
 
 # Use a global npm prefix owned by the vscode user.
