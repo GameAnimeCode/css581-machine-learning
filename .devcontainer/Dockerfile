@@ -12,7 +12,6 @@ RUN dnf config-manager addrepo --from-repofile https://cli.github.com/packages/r
   gh \
   python3 python3-pip \
   nodejs24 npm \
-  dotnet-sdk-10.0 \
   docker podman podman-compose \
   wget gnupg curl git \
   zsh tmux vim powerline powerline-fonts tmux-powerline vim-powerline \
