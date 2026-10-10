@@ -127,7 +127,25 @@ $$A = \begin{bmatrix} 3 & 1 & 6 \\ 2 & 1 & 0 \\ -1 & 0 & -3 \end{bmatrix}$$
 
 **Answer:**
 
-> answer
+> The eigenvalues are $\lambda = 3$ and $\lambda = -1$. The corresponding eigenvectors are
+>
+> $$\lambda = 3: \; v_1 = \begin{bmatrix} -6 \\ -6 \\ 1 \end{bmatrix} \qquad \lambda = -1: \; v_2 = \begin{bmatrix} -2 \\ 2 \\ 1 \end{bmatrix}$$
+>
+> The handwritten derivation follows.
+>
+> ![*Problem 6 handwritten derivation, page 1 of 7.*](figures/problem-6-page-1.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 2 of 7.*](figures/problem-6-page-2.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 3 of 7.*](figures/problem-6-page-3.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 4 of 7.*](figures/problem-6-page-4.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 5 of 7.*](figures/problem-6-page-5.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 6 of 7.*](figures/problem-6-page-6.png){width=100%}
+>
+> ![*Problem 6 handwritten derivation, page 7 of 7.*](figures/problem-6-page-7.png){width=100%}
 
 ## Problem 7: Programming Warm-up (8 points)
 
