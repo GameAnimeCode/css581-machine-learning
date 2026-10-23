@@ -105,19 +105,19 @@ a. Which dataset and problem are you planning to study for the term project? Why
 
 **Answer:**
 
-> answer
+> I plan to use the TogetherAI Tev1 v2 Procedural Policy and Routing Dataset (37,840 train / 4,568 validation / held-out test rows) to study fast, single-pass ("System 1") multi-class classification. Starting from a raw `Qwen3.5-4/8B` base model, I will train and compare three algorithms: a standard fixed linear classifier, the Contrastive-LM (CLM) bi-encoder method (which encodes states and options separately), and the Tev1 (Jev-style) method (which reads states and shuffled options together via LoRA). I am interested in this because CLM and Tev1 are brand-new competing approaches for fast LLM decision-making, and no one has benchmarked them head-to-head on the same dataset yet.
 
 b. What useful information, knowledge, or patterns do you expect to discover from that dataset?
 
 **Answer:**
 
-> answer
+> I expect to discover the exact trade-off between inference speed and logical accuracy across the three methods on unseen test rules. Specifically, I expect to show that the CLM approach is up to 10x faster because it caches option vectors, but fails on multi-step `AND/OR/NOT` logic and missing-data rules where Tev1's joint attention succeeds.
 
 c. Why do you think your work will be valuable? Describe a potential future application of your work or identify its potential customers.
 
 **Answer:**
 
-> answer
+> Real-world software systems need to evaluate routing rules, permissions, and code actions in milliseconds without paying the high latency cost of Chain-of-Thought reasoning. My benchmark will give engineering teams a clear rulebook on when to use ultra-fast contrastive heads (CLM) versus joint-attention classifiers (Tev1). Potential customers include cloud infrastructure providers, DevSecOps authorization platforms, and AI developer-tooling companies.
 
 ## Problem 6: Linear Algebra Warm-up (12 points)
 
