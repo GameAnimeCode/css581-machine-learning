@@ -15,7 +15,7 @@ format:
 % Name, last name, ID, and email are NOT set here. scripts/build-writeup.sh
 % injects them at build time from .local/student.env, so they stay out of git.
 \newcommand{\courseName}{CSS 581: Machine Learning}
-\newcommand{\dueDate}{October 18, 2026}
+\newcommand{\dueDate}{October 23, 2026}
 \newcommand{\asgTitle}{Assignment 1: Machine Learning Foundations}
 \newcommand{\codeRepo}{\url{https://github.com/GameAnimeCode/css581-machine-learning}}
 
