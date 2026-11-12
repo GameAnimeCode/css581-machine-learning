@@ -1,4 +1,5 @@
-"""CSS 581 Assignment 2: Distance, Probability, and PCA.
+"""
+CSS 581 Assignment 2: Distance, Probability, and PCA.
 
 Tasks 1 and 2 are worked by hand in the writeup. This runs Tasks 3 and 4.
 

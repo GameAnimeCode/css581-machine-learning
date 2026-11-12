@@ -1,4 +1,5 @@
-"""Task 4: PCA on USPS handwritten digits.
+"""
+Task 4: PCA on USPS handwritten digits.
 
 The dataset lives at data/USPS_digits_python.npz.
 """
