@@ -45,7 +45,7 @@ $$d_E(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
 
 **Answer:**
 
-> answer
+> $d_E(x, y) = \sqrt{45} = 3\sqrt{5} \approx 6.708$. The handwritten derivation is in the figure after part b.
 
 #### b. Manhattan Distance (2 points)
 
@@ -55,7 +55,13 @@ $$d_M(x, y) = \sum_{i=1}^{n} |x_i - y_i|$$
 
 **Answer:**
 
-> answer
+> $d_M(x, y) = 2 + 1 + 6 + 2 = 11$.
+>
+> ```{=latex}
+> \clearpage
+> ```
+>
+> ![*Task 1.1 handwritten derivation of the Euclidean and Manhattan distances.*](figures/task-1-1.png){width=6.25in}
 
 ### 1.2 Cosine Similarity (5 points)
 
@@ -75,7 +81,15 @@ $$\cos(\theta) = \frac{d_1 \cdot d_2}{\|d_1\|_2 \, \|d_2\|_2}.$$
 
 **Answer:**
 
-> answer
+> $d_1 \cdot d_2 = 274$, $\|d_1\|_2 = \sqrt{205}$, and $\|d_2\|_2 = \sqrt{1715}$, so
+>
+> $$\cos(\theta) = \frac{274}{35\sqrt{287}} \approx 0.462.$$
+>
+> ```{=latex}
+> \clearpage
+> ```
+>
+> ![*Task 1.2 handwritten cosine similarity calculation.*](figures/task-1-2.png){width=6.25in}
 
 ## Task 2: Probability and Bayes' Rule (20 points)
 
