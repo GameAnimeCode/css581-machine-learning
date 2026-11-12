@@ -1,4 +1,7 @@
 ---
+filters:
+  - quarto
+  - ../../filters/crossref-link.lua
 format:
   pdf:
     documentclass: article
@@ -45,7 +48,7 @@ $$d_E(x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
 
 **Answer:**
 
-> $d_E(x, y) = \sqrt{45} = 3\sqrt{5} \approx 6.708$. The handwritten derivation is in the figure after part b.
+> $d_E(x, y) = \sqrt{45} = 3\sqrt{5} \approx 6.708$. The handwritten derivation is in @fig-task-1-1.
 
 #### b. Manhattan Distance (2 points)
 
@@ -61,7 +64,7 @@ $$d_M(x, y) = \sum_{i=1}^{n} |x_i - y_i|$$
 > \clearpage
 > ```
 >
-> ![*Task 1.1 handwritten derivation of the Euclidean and Manhattan distances.*](figures/task-1-1.png){width=6.25in}
+> ![*Task 1.1 handwritten derivation of the Euclidean and Manhattan distances.*](figures/task-1-1.png){#fig-task-1-1 width=6.25in}
 
 ### 1.2 Cosine Similarity (5 points)
 
@@ -89,7 +92,7 @@ $$\cos(\theta) = \frac{d_1 \cdot d_2}{\|d_1\|_2 \, \|d_2\|_2}.$$
 > \clearpage
 > ```
 >
-> ![*Task 1.2 handwritten cosine similarity calculation.*](figures/task-1-2.png){width=6.25in}
+> ![*Task 1.2 handwritten cosine similarity calculation.*](figures/task-1-2.png){#fig-task-1-2 width=6.25in}
 
 ## Task 2: Probability and Bayes' Rule (20 points)
 
@@ -121,7 +124,7 @@ $$P(D \mid T) = \frac{P(T \mid D)\,P(D)}{P(T)}, \quad \text{where} \quad P(T) = 
 > \clearpage
 > ```
 >
-> ![*Task 2.1 handwritten Bayes' rule calculation.*](figures/task-2-1.png){width=6.25in}
+> ![*Task 2.1 handwritten Bayes' rule calculation.*](figures/task-2-1.png){#fig-task-2-1 width=6.25in}
 
 ### 2.2 Posterior-to-Prior Ratio (2 points)
 
@@ -139,7 +142,7 @@ and briefly interpret what the ratio says about how a positive test changes the 
 > \clearpage
 > ```
 >
-> ![*Task 2.2 handwritten posterior-to-prior ratio and interpretation.*](figures/task-2-2.png){width=6.25in}
+> ![*Task 2.2 handwritten posterior-to-prior ratio and interpretation.*](figures/task-2-2.png){#fig-task-2-2 width=6.25in}
 
 ## Task 3: PCA Simulation from Scratch in Python (25 points)
 

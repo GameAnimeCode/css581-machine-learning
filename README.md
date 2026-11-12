@@ -23,6 +23,8 @@ Each assignment is a folder with Python code and a writeup. Writeups are Markdow
 ├── templates/
 │   ├── code/main.py      # Python starter
 │   └── writeup/          # writeup.qmd and preamble.tex
+├── filters/
+│   └── crossref-link.lua # makes "Figure N" links cover the whole phrase
 ├── scripts/
 │   ├── setup-python.sh       # create .venv and install requirements
 │   ├── new-assignment.sh     # create an assignment from the templates
@@ -97,6 +99,18 @@ Open `writeup.qmd` and fill in the macros in the block at the top:
 `\courseName` and `\codeRepo` come prefilled, so usually only `\dueDate` and `\asgTitle` need editing. Name, last name, ID, and email are not in this file. They come from `.local/student.env` at build time.
 
 Write the report below the title block in regular Markdown. `preamble.tex` controls the page layout and rarely needs changes.
+
+Refer to figures and tables with Quarto cross-references instead of typing numbers, so the numbering stays right when things move. Label the figure or table, then cite it:
+
+```markdown
+![Scatter plot of the data.](figures/scatter.png){#fig-scatter}
+
+: Test characteristics. {#tbl-tests}
+
+@fig-scatter shows the cloud, and @tbl-tests lists the values.
+```
+
+Write the reference as `@fig-...` or `@tbl-...` on its own, with no "Figure" or "Table" in front. It renders as "Figure 1" or "Table 1", and `filters/crossref-link.lua` (already listed in the header of each writeup) makes that whole phrase the link, not just the number.
 
 ### Build the PDF
 
