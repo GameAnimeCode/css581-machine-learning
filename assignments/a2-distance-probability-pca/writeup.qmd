@@ -150,11 +150,13 @@ Let $X \in \mathbb{R}^{m \times n}$ be a data matrix with $m$ observations and $
 
 ### 3.1 Generate and Visualize Correlated 2D Data (2 points)
 
-Generate 1,000 two-dimensional data points using the reproducible setup in the handout (seed 581, zero mean, covariance $\begin{bmatrix} 2.0 & 1.4 \\ 1.4 & 1.0 \end{bmatrix}$) and display them as Figure 1, a scatter plot of the original $x_1$ and $x_2$ values with equal axis scaling if practical.
+Generate 1,000 two-dimensional data points using the reproducible setup in the handout (seed 581, zero mean, covariance $\begin{bmatrix} 2.0 & 1.4 \\ 1.4 & 1.0 \end{bmatrix}$) and display them as @fig-original, a scatter plot of the original $x_1$ and $x_2$ values with equal axis scaling if practical.
 
 **Answer:**
 
-> answer
+> The 1,000 points come from `generate_data()` (seed 581, mean $(0, 0)$, covariance $\begin{bmatrix} 2.0 & 1.4 \\ 1.4 & 1.0 \end{bmatrix}$). The first column of `X` is the horizontal value and the second column is the vertical value, and `plt.axis("equal")` keeps one unit the same length on both axes. The cloud is a long, thin band rising from the lower left to the upper right, so $x_1$ and $x_2$ are strongly and positively correlated.
+>
+> ![*Scatter plot of the original $x_1$ and $x_2$ values.*](figures/task-3-figure-1.png){#fig-original width=70%}
 
 ### 3.2 Compute the First Principal Component and Project the Data (10 points)
 
@@ -165,19 +167,33 @@ Generate 1,000 two-dimensional data points using the reproducible setup in the h
 5. Select the eigenvector associated with the largest eigenvalue as the first principal component $v_1$.
 6. Project every centered data point onto that component: $z_1 = X_c v_1$.
 7. Report both eigenvalues and the percentage of total variance explained by PC1: $\text{Explained Variance Ratio}_1 = \frac{\lambda_1}{\lambda_1 + \lambda_2}$.
-8. Create Figure 2 showing the one-dimensional PC1 scores. A scatter plot of PC1 score versus zero is acceptable.
+8. Create @fig-pc1-scores showing the one-dimensional PC1 scores. A scatter plot of PC1 score versus zero is acceptable.
 
 **Answer:**
 
-> answer
+> 1. **Mean and centering.** The feature-wise mean is $\mu = (-0.0049, 0.0010)$, from `np.mean(X, axis=0)`. Subtracting it moves the cloud onto the origin so the variance calculations are anchored there, without changing the shape of the data.
+> 2. **Covariance.** `np.cov(X_c, rowvar=False)` gives the $2 \times 2$ matrix of the variance of $x_1$, the covariance of $x_1$ and $x_2$, and the variance of $x_2$:
+>
+>     $$C = \begin{bmatrix} 2.0730 & 1.4579 \\ 1.4579 & 1.0453 \end{bmatrix}$$
+>
+> 3. **Eigendecomposition.** The eigenvectors give the directions of stretch and the eigenvalues give the amount of stretch in each direction. Because $C$ is symmetric I used `np.linalg.eigh`.
+> 4. **Sorting.** `eigh` returns the eigenvalues smallest first, so I reversed them. The sorted eigenvalues are $\lambda_1 = 3.1050$ and $\lambda_2 = 0.0134$.
+> 5. **PC1.** The eigenvector for the largest eigenvalue is $v_1 = (-0.8162, -0.5777)^T$, the direction of maximum stretch. The other eigenvector, $v_2 = (0.5777, -0.8162)^T$, is perpendicular to it.
+> 6. **Projection.** $z_1 = X_c v_1$ turns each centered point into one number, its position along PC1.
+> 7. **Explained variance.** $$\text{EVR}_1 = \frac{\lambda_1}{\lambda_1 + \lambda_2} = \frac{3.1050}{3.1050 + 0.0134} = 99.57\%.$$
+> 8. @fig-pc1-scores shows the 1D scores. Each point has only one coordinate, so every point is plotted at zero on the vertical axis, which carries no information.
+>
+> ![*PC1 scores $z_1$ of the 1,000 points, plotted against zero.*](figures/task-3-figure-2.png){#fig-pc1-scores width=80%}
 
 ### 3.3 Reconstruct from One Principal Component (3 points)
 
-Reconstruct the two-dimensional points using only PC1: $\hat{X} = z_1 v_1^T + \mathbf{1}\mu^T$. Create Figure 3 showing the reconstructed points in the original two-dimensional feature space.
+Reconstruct the two-dimensional points using only PC1: $\hat{X} = z_1 v_1^T + \mathbf{1}\mu^T$. Create @fig-reconstruction showing the reconstructed points in the original two-dimensional feature space.
 
 **Answer:**
 
-> answer
+> Multiplying each 1D score by the 2D direction of PC1, $z_1 v_1^T$ (`np.outer`), puts every point back on the PC1 line through the origin. Adding the original mean $\mu$ moves that line back to where the data was. Every reconstructed point lies exactly on one line, and the mean squared error against the original data is 0.0067.
+>
+> ![*Reconstruction of the data from PC1 only, in the original feature space.*](figures/task-3-figure-3.png){#fig-reconstruction width=70%}
 
 ### 3.4 Short Report (10 points)
 
@@ -190,7 +206,13 @@ Your report should:
 
 **Answer:**
 
-> answer
+> **The steps.** First I center the data by subtracting the mean, so the cloud sits on the origin and the variance calculations are anchored there without changing the shape of the data. Next I build the covariance matrix, which records how much each feature varies and how the two features vary together. Its eigenvectors are the directions of stretch of the cloud and its eigenvalues are the amount of stretch along each one. I sort them from largest to smallest and keep the eigenvector with the largest eigenvalue as PC1, the direction of maximum variance. Projecting the centered points onto PC1 gives each point a single score. To reconstruct, I multiply each score by the PC1 direction to place it back in two dimensions and add the mean back.
+>
+> **Key results.** $\lambda_1 = 3.1050$, $\lambda_2 = 0.0134$, and PC1 explains 99.57% of the total variance. The reconstruction error is 0.0067. @fig-original, @fig-pc1-scores, and @fig-reconstruction are shown in the answers above.
+>
+> **What is lost.** Going from two dimensions to one trades a dimension of the data for compression. I keep the direction with the most variance and discard the direction with the least. After reconstruction every point sits exactly on the PC1 line, so each point's offset perpendicular to the line, its PC2 coordinate, is gone and cannot be recovered. Only 0.43% of the variance is discarded, so the loss is small here, and it is the thin scatter around the line in @fig-original. This is what lets PCA compress the data to a smaller size while keeping as much valuable information as possible.
+>
+> **PC1 and the shape of the cloud.** The cloud in @fig-original is an elongated band tilted upward to the right, because $x_1$ and $x_2$ have a large positive covariance (1.46). PC1 points along the long axis of that band, at about 35° above the $x_1$ axis. The sign of the eigenvector is arbitrary, which is why $v_1$ points toward the lower left, but the line it defines is the same. PC2 is perpendicular to PC1 and runs across the narrow width of the band. The large gap between $\lambda_1$ and $\lambda_2$ matches how stretched the cloud is, and it is why the one-dimensional reconstruction in @fig-reconstruction looks so much like the original.
 
 ## Task 4: PCA on USPS Handwritten Digits in Python (45 points)
 
