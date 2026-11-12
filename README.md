@@ -8,6 +8,7 @@ Each assignment is a folder with Python code and a writeup. Writeups are Markdow
 
 <!-- assignments:start -->
 - [a1-ml-foundations](assignments/a1-ml-foundations)
+- [a2-distance-probability-pca](assignments/a2-distance-probability-pca)
 <!-- assignments:end -->
 
 ## Layout
