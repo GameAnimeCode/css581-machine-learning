@@ -224,7 +224,9 @@ Load the dataset with NumPy. Preprocess by computing the mean image (feature-wis
 
 **Answer:**
 
-> answer
+> `np.load` gives `images` with shape $(3000, 256)$ and `labels` with shape $(3000,)$. Pixel values run from 0.0 to 2.0, and the mean image has an average pixel value of 0.5116. I center with `A - np.mean(A, axis=0)`, which subtracts the mean image from every sample. Centering happens inside `fit_pca`, and `project_pca` repeats it, so the raw data is never modified.
+>
+> I did not standardize each pixel. Every pixel is already on the same 0 to 2 scale, so standardizing would add nothing. It would also hurt: the per-pixel standard deviation ranges from 0.0496 (nearly always empty border pixels) to 0.8948 (pixels the digit often crosses). Dividing by those values would inflate the border pixels to the same weight as the strokes, and PCA would then spend components on noise instead of digit shape.
 
 ### 4.2 Implement PCA and Reconstruction (20 points)
 
@@ -238,7 +240,9 @@ Organize your code into functions where practical (for example, `fit_pca`, `proj
 
 **Answer:**
 
-> answer
+> The implementation is in `src/pca.py`, with `fit_pca`, `project_pca`, and `reconstruct_pca` shared with Task 3. `fit_pca` computes the mean image, centers $A$, builds the $256 \times 256$ covariance with `np.cov(A_c, rowvar=False)`, and runs `np.linalg.eigh`. Because `eigh` returns the eigenvalues smallest first, I reverse both the eigenvalues and the eigenvector columns so the largest is in front. The total variance (the sum of all 256 eigenvalues) is 119.6239.
+>
+> For each $p \in \{10, 50, 100, 150, 200\}$ I slice $V_p$ as the first $p$ eigenvector columns, `eigenvectors[:, :p]`, then compute $Z_p = (A - \mathbf{1}\mu^T) V_p$ with `np.dot` and reconstruct with $\hat{A}_p = Z_p V_p^T + \mathbf{1}\mu^T$. The first $p$ components keep 56.70%, 88.56%, 96.02%, 98.53%, and 99.62% of the total variance, respectively.
 
 ### 4.3 Visual Comparison of Original and Reconstructed Images (10 points)
 
@@ -246,7 +250,9 @@ Use the last two images in the dataset (`A[-2]` and `A[-1]`). For each image, sh
 
 **Answer:**
 
-> answer
+> @fig-usps-comparison shows the last two images in the dataset. Both are labeled 9, so each row is titled "Original (digit 9)". The first column is the original and the other five are the reconstructions for $p = 10, 50, 100, 150, 200$. I plot each 256-value row with `reshape(16, 16)` and no transpose, since this data already has the digit upright.
+>
+> ![*The last two USPS images (digit 9) and their reconstructions from $p = 10, 50, 100, 150, 200$ principal components.*](figures/task-4-figure-1.png){#fig-usps-comparison width=100%}
 
 ### 4.4 Reconstruction Error (10 points)
 
@@ -258,7 +264,21 @@ Report the five MSE values in a table and explain the trend as $p$ increases. A 
 
 **Answer:**
 
-> answer
+> I compute the error with `np.mean((A - A_reconstructed) ** 2)`, which averages the squared difference over all $3000 \times 256$ entries. @tbl-usps-mse lists the five values, and @fig-usps-mse plots them.
+>
+> | $p$ | MSE | Change from previous $p$ | Variance kept |
+> |----:|-------:|------:|-------:|
+> | 10  | 0.2023 |       | 56.70% |
+> | 50  | 0.0534 | $-0.1489$ | 88.56% |
+> | 100 | 0.0186 | $-0.0348$ | 96.02% |
+> | 150 | 0.0069 | $-0.0117$ | 98.53% |
+> | 200 | 0.0018 | $-0.0051$ | 99.62% |
+>
+> : Mean squared reconstruction error on all 3,000 images. {#tbl-usps-mse}
+>
+> The error falls every time $p$ grows, and the drops get smaller. The first 40 added components cut the error by 0.1489, while the last 50 cut it by only 0.0051. The reason is that the eigenvalues are sorted from largest to smallest, so each new component carries less variance than the one before it. The MSE is exactly the variance that was thrown away. As a check, the sum of the discarded eigenvalues $\lambda_{p+1} + \dots + \lambda_{256}$, multiplied by $\frac{m-1}{m}$ (because `np.cov` divides by $m - 1$) and divided by 256, matches every MSE in the table to four decimals, so the "Check" column in the console output agrees with the table.
+>
+> ![*Mean squared reconstruction error versus the number of principal components $p$.*](figures/task-4-figure-2.png){#fig-usps-mse width=70%}
 
 ### 4.5 Discussion (5 points)
 
@@ -271,4 +291,10 @@ Address the following questions:
 
 **Answer:**
 
-> answer
+> **Image quality.** At $p = 10$ the digit is recognizable as a 9 but blurry, with a grey halo in the background and a smeared hole in the loop. At $p = 50$ the loop and the stem are clear and the edges are only slightly soft. By $p = 100$ the reconstruction is close to the original, and at $p = 150$ and $p = 200$ the remaining differences are faint grey speckle in the background.
+>
+> **Error.** The MSE drops from 0.2023 at $p = 10$ to 0.0018 at $p = 200$, with smaller gains each time. Each component adds less variance than the one before it, so the discarded variance, which is the MSE, shrinks more slowly as $p$ grows.
+>
+> **Diminishing returns.** I see them at about $p = 100$. Going from 50 to 100 components still cleans up the image noticeably (the variance kept rises from 88.56% to 96.02%), but going from 100 to 200 changes little to the eye even though it doubles the number of components. For reference, 56 components keep 90% of the variance, 89 keep 95%, and 167 keep 99%.
+>
+> **Dimensionality and redundancy.** The 256 pixels are far from independent. Neighboring pixels move together and many pixels near the border are almost always empty. PCA filters out that background and captures the core of the data, the shape of the digit, using only a fraction of the original data: 100 numbers per image instead of 256 keep 96% of the variance. This is the same trade as in Task 3, where I gave up the low-variance direction to compress the data while keeping as much valuable information as possible.
