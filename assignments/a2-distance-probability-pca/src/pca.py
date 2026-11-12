@@ -1,5 +1,7 @@
 """PCA from first principles (shared by Tasks 3 and 4)."""
 
+from pathlib import Path
+
 import numpy as np
 
 
@@ -44,5 +46,16 @@ def reconstruct_pca(Z, mean, eigenvectors, p):
 
 
 def mse(X, X_hat):
-    # TODO: return mean squared reconstruction error
-    pass
+    """Mean squared reconstruction error over every entry of X."""
+    return np.mean((X - X_hat) ** 2)
+
+
+def figures_dir() -> Path:
+    """Folder for saved figures. In the repository layout this is the assignment's
+    figures/ folder, one level above src/. Otherwise it is figures/ next to the
+    scripts, so nothing is ever written above the folder the scripts are in."""
+    src_dir = Path(__file__).resolve().parent
+    assignment_figures = src_dir.parent / "figures"
+    folder = assignment_figures if assignment_figures.is_dir() else src_dir / "figures"
+    folder.mkdir(exist_ok=True)
+    return folder

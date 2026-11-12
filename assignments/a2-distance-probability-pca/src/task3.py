@@ -3,11 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from pathlib import Path
-
-from pca import fit_pca, project_pca, reconstruct_pca
-
-FIGURES_DIR = Path(__file__).resolve().parent.parent / "figures"
+from pca import figures_dir, fit_pca, project_pca, reconstruct_pca
 
 
 def generate_data() -> np.ndarray:
@@ -25,7 +21,7 @@ def scatter_2d(points, name: str) -> None:
     ax.axis("equal")
     ax.set_xlabel("$x_1$")
     ax.set_ylabel("$x_2$")
-    fig.savefig(FIGURES_DIR / name, dpi=200, bbox_inches="tight")
+    fig.savefig(figures_dir() / name, dpi=200, bbox_inches="tight")
 
 
 def main() -> None:
@@ -61,7 +57,7 @@ def main() -> None:
     ax.scatter(z1, np.zeros_like(z1), s=8, alpha=0.5)
     ax.set_xlabel("PC1 score $z_1$")
     ax.set_yticks([])
-    fig.savefig(FIGURES_DIR / "task-3-figure-2.png", dpi=200, bbox_inches="tight")
+    fig.savefig(figures_dir() / "task-3-figure-2.png", dpi=200, bbox_inches="tight")
 
     # 3.3: reconstruct from PC1 only: X_hat = z1 v1^T + 1 mu^T. Every
     # reconstructed point lies on the PC1 line through the mean.
