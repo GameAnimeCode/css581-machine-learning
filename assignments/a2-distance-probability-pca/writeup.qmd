@@ -113,7 +113,15 @@ $$P(D \mid T) = \frac{P(T \mid D)\,P(D)}{P(T)}, \quad \text{where} \quad P(T) = 
 
 **Answer:**
 
-> answer
+> The numerator is $0.95 \times 0.01 = 0.0095$ and the total probability of a positive test is $P(T) = 0.0095 + 0.10 \times 0.99 = 0.1085$, so
+>
+> $$P(\text{Disease} = \text{true} \mid \text{Test} = \text{pos}) = \frac{0.0095}{0.1085} \approx 0.0876 = 8.76\%.$$
+>
+> ```{=latex}
+> \clearpage
+> ```
+>
+> ![*Task 2.1 handwritten Bayes' rule calculation.*](figures/task-2-1.png){width=6.25in}
 
 ### 2.2 Posterior-to-Prior Ratio (2 points)
 
@@ -125,7 +133,13 @@ and briefly interpret what the ratio says about how a positive test changes the 
 
 **Answer:**
 
-> answer
+> The ratio is $0.0876 / 0.01 = 8.76$. A positive test makes it about 8 to 9 times more likely that the patient has the disease than the prior alone suggests.
+>
+> ```{=latex}
+> \clearpage
+> ```
+>
+> ![*Task 2.2 handwritten posterior-to-prior ratio and interpretation.*](figures/task-2-2.png){width=6.25in}
 
 ## Task 3: PCA Simulation from Scratch in Python (25 points)
 
